@@ -12,6 +12,8 @@ The following "top-level" environments are parsed, with or without (ending `*`) 
 
 Note the `split`, `gathered`, `aligned`, `alignedat` are not parsed, since they should be used within a parent environment.
 
+See <https://executablebooks.github.io/markdown-it-amsmath/> for a demonstration!
+
 ## Usage
 
 You should "bring your own" math render, provided as an option to the plugin.

@@ -3,9 +3,61 @@
 [![ci-badge]][ci-link]
 [![npm-badge]][npm-link]
 
-A template for creating a [markdown-it](https://github.com/markdown-it/markdown-it) plugin.
+A [markdown-it](https://github.com/markdown-it/markdown-it) plugin for [amsmath](https://ctan.org/pkg/amsmath) LaTeX environments.
 
-## Features
+The following "top-level" environments are parsed, with or without (ending `*`) numbering:
+`equation`, `multline`, `gather`, `align`, `alignat`, `flalign`, `matrix`, `pmatrix`, `bmatrix`, `Bmatrix`, `vmatrix`, `Vmatrix`, `eqnarray`.
+
+(these environments are taken from [amsmath version 2.1](http://anorien.csc.warwick.ac.uk/mirrors/CTAN/macros/latex/required/amsmath/amsldoc.pdf))
+
+Note the `split`, `gathered`, `aligned`, `alignedat` are not parsed, since they should be used within a parent environment.
+
+## Usage
+
+You should "bring your own" math render, provided as an option to the plugin.
+This function should take the string plus (optional) options, and return a string.
+For example, below the [KaTeX](https://github.com/Khan/KaTeX) render is used.
+
+As a Node module:
+
+```javascript
+import { renderToString } from "katex"
+import MarkdownIt from "markdown-it"
+import amsmathPlugin from "markdown-it-amsmath"
+
+const mdit = MarkdownIt().use(amsmathPlugin, {
+      renderer: renderToString,
+      options: { throwOnError: false, displayMode: true }
+})
+const text = mdit.render("\\begin{equation}a = 1\\end{equation}")
+```
+
+In the browser:
+
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Example Page</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/markdown-it@12/dist/markdown-it.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js"></script>
+        <script src="https://unpkg.com/markdown-it-amsmath"></script>
+    </head>
+    <body>
+        <div id="demo"></div>
+        <script>
+            const options = { renderer: katex.renderToString, options: { throwOnError: false, displayMode: true }};
+            const text = window.markdownit().use(window.markdownitAmsmath, options).render("\\begin{equation}a = 1\\end{equation}");
+            document.getElementById("demo").innerHTML = text
+        </script>
+    </body>
+</html>
+```
+
+## Development
+
+### Features
 
 - TypeScript
 - Code Formatting ([prettier])
@@ -16,7 +68,7 @@ A template for creating a [markdown-it](https://github.com/markdown-it/markdown-
 - Upload as [NPM] package and [unpkg] CDN
 - Simple demonstration website ([GitHub Pages])
 
-## Getting Started
+### Getting Started
 
 1. Create a GitHub repository [from the template](https://docs.github.com/en/github-ae@latest/github/creating-cloning-and-archiving-repositories/creating-a-repository-on-github/creating-a-repository-from-a-template).
 2. Replace package details in the following files:
@@ -40,67 +92,11 @@ Finally, you can update the version of your package, e.g.: `npm version patch -m
 Finally, you can adapt the HTML document in `docs/`, to load both markdown-it and the plugin (from [unpkg]), then render text from an input area.
 This can be deployed by [GitHub Pages].
 
-## Usage
 
-As a Node module:
-
-```javascript
-import MarkdownIt from "markdown-it"
-import example_plugin from "markdown-it-plugin-template"
-
-const text = MarkdownIt().use(example_plugin).render("*a*")
-```
-
-In the browser:
-
-```html
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Example Page</title>
-        <script src="https://cdn.jsdelivr.net/npm/markdown-it@12/dist/markdown-it.min.js"></script>
-        <script src="https://unpkg.com/markdown-it-plugin-template"></script>
-    </head>
-    <body>
-        <div id="demo"></div>
-        <script>
-            const text = window.markdownit().use(window.markdownitExample).render("*a*");
-            document.getElementById("demo").innerHTML = text
-        </script>
-    </body>
-</html>
-```
-
-## Design choices
-
-### Why is markdown-it only in devDependencies?
-
-From the [markdown-it development recommendations](https://github.com/markdown-it/markdown-it/blob/master/docs/development.md):
-
-> Plugins should not require the `markdown-it` package as a dependency in `package.json`.
-
-Note, for typing, we import this package with `import type`, to ensure the imports are not present in the compiled JavaScript.
-
-### Why Jest?
-
-There are a number of JavaScript unit testing frameworks (see [this comparison](https://raygun.com/blog/javascript-unit-testing-frameworks/), but [jest] was chosen because of it is easy to setup/use, flexible, and well used in large projects.
-
-### Why Rollup?
-
-The three main bundlers are; Webpack, Rollup and Parcel, with the functionality gap between all of these bundlers narrowing over the years.
-Essentially, Rollup provides a middle ground between features and complexity, and is good for bundling libraries (it is what `markdown-it` itself [uses](https://github.com/markdown-it/markdown-it/blob/064d602c6890715277978af810a903ab014efc73/support/rollup.config.js)).
-
-See for example:
-
-- <https://medium.com/@PepsRyuu/why-i-use-rollup-and-not-webpack-e3ab163f4fd3>
-- <https://medium.com/js-imaginea/comparing-bundlers-webpack-rollup-parcel-f8f5dc609cfd>
-- <https://betterprogramming.pub/the-battle-of-bundlers-6333a4e3eda9>
-
-
-[ci-badge]: https://github.com/executablebooks/markdown-it-plugin-template/workflows/CI/badge.svg
+[ci-badge]: https://github.com/executablebooks/markdown-it-amsmath/workflows/CI/badge.svg
 [ci-link]: https://github.com/executablebooks/markdown-it--plugin-template/actions
-[npm-badge]: https://img.shields.io/npm/v/markdown-it-plugin-template.svg
-[npm-link]: https://www.npmjs.com/package/markdown-it-plugin-template
+[npm-badge]: https://img.shields.io/npm/v/markdown-it-amsmath.svg
+[npm-link]: https://www.npmjs.com/package/markdown-it-amsmath
 
 [GitHub Actions]: https://docs.github.com/en/actions
 [GitHub Pages]: https://docs.github.com/en/pages

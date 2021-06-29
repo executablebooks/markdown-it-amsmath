@@ -1,4 +1,4 @@
-# Markdown-It Plugin Template
+# markdown-it-amsmath
 
 [![ci-badge]][ci-link]
 [![npm-badge]][npm-link]

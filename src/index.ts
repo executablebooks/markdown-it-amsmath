@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type MarkdownIt from "markdown-it/lib"
 import type StateBlock from "markdown-it/lib/rules_block/state_block"
 
 export interface IOptions {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // the render function to use
   renderer?: (content: string, options?: { [key: string]: any }) => string
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // options to parse to the render function
   options?: { [key: string]: any }
 }
 

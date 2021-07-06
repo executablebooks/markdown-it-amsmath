@@ -28,8 +28,7 @@ describe("Parses basic", () => {
 
   readFixtures("katex").forEach(([name, text, expected]) => {
     const mdit = MarkdownIt().use(amsmathPlugin, {
-      renderer: renderToString,
-      options: { throwOnError: false, displayMode: true }
+      renderer: math => renderToString(math, { throwOnError: false, displayMode: true })
     })
     let rendered = mdit.render(text)
     // remove styles

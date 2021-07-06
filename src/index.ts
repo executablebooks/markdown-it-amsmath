@@ -4,21 +4,19 @@ import type StateBlock from "markdown-it/lib/rules_block/state_block"
 
 export interface IOptions {
   // the render function to use
-  renderer?: (content: string, options?: { [key: string]: any }) => string
-  // options to parse to the render function
-  options?: { [key: string]: any }
+  renderer?: (content: string) => string
 }
 
 /**
  * An markdown-it plugin that parses bare LaTeX [amsmath](https://ctan.org/pkg/amsmath) environments.
- * 
+ *
  * ```latex
     \begin{gather*}
       a_1=b_1+c_1\\
       a_2=b_2+c_2-d_2+e_2
     \end{gather*}
   ```
- * 
+ *
  */
 export default function amsmathPlugin(md: MarkdownIt, options?: IOptions): void {
   md.block.ruler.before("blockquote", "amsmath", amsmathBlock, {
@@ -32,7 +30,7 @@ export default function amsmathPlugin(md: MarkdownIt, options?: IOptions): void 
       const content = tokens[idx].content
       let res: string
       try {
-        res = renderer(content, options?.options)
+        res = renderer(content)
       } catch (err) {
         res = md.utils.escapeHtml(`${content}:${err.message}`)
       }

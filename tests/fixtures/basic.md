@@ -4,13 +4,11 @@ equation environment:
 a = 1
 \end{equation}
 .
-<section class="amsmath">
-<eqn>
+<div class="math amsmath">
 \begin{equation}
 a = 1
 \end{equation}
-</eqn>
-</section>
+</div>
 .
 
 equation* environment:
@@ -19,13 +17,11 @@ equation* environment:
 a = 1
 \end{equation*}
 .
-<section class="amsmath">
-<eqn>
+<div class="math amsmath">
 \begin{equation*}
 a = 1
 \end{equation*}
-</eqn>
-</section>
+</div>
 .
 
 multline environment:
@@ -34,13 +30,11 @@ multline environment:
 a = 1
 \end{multline}
 .
-<section class="amsmath">
-<eqn>
+<div class="math amsmath">
 \begin{multline}
 a = 1
 \end{multline}
-</eqn>
-</section>
+</div>
 .
 
 multline* environment:
@@ -49,13 +43,11 @@ multline* environment:
 a = 1
 \end{multline*}
 .
-<section class="amsmath">
-<eqn>
+<div class="math amsmath">
 \begin{multline*}
 a = 1
 \end{multline*}
-</eqn>
-</section>
+</div>
 .
 
 gather environment:
@@ -64,13 +56,11 @@ gather environment:
 a = 1
 \end{gather}
 .
-<section class="amsmath">
-<eqn>
+<div class="math amsmath">
 \begin{gather}
 a = 1
 \end{gather}
-</eqn>
-</section>
+</div>
 .
 
 gather* environment:
@@ -79,13 +69,11 @@ gather* environment:
 a = 1
 \end{gather*}
 .
-<section class="amsmath">
-<eqn>
+<div class="math amsmath">
 \begin{gather*}
 a = 1
 \end{gather*}
-</eqn>
-</section>
+</div>
 .
 
 align environment:
@@ -94,13 +82,11 @@ align environment:
 a = 1
 \end{align}
 .
-<section class="amsmath">
-<eqn>
+<div class="math amsmath">
 \begin{align}
 a = 1
 \end{align}
-</eqn>
-</section>
+</div>
 .
 
 align* environment:
@@ -109,13 +95,11 @@ align* environment:
 a = 1
 \end{align*}
 .
-<section class="amsmath">
-<eqn>
+<div class="math amsmath">
 \begin{align*}
 a = 1
 \end{align*}
-</eqn>
-</section>
+</div>
 .
 
 alignat environment:
@@ -124,13 +108,11 @@ alignat environment:
 a = 1
 \end{alignat}
 .
-<section class="amsmath">
-<eqn>
+<div class="math amsmath">
 \begin{alignat}
 a = 1
 \end{alignat}
-</eqn>
-</section>
+</div>
 .
 
 alignat* environment:
@@ -139,13 +121,11 @@ alignat* environment:
 a = 1
 \end{alignat*}
 .
-<section class="amsmath">
-<eqn>
+<div class="math amsmath">
 \begin{alignat*}
 a = 1
 \end{alignat*}
-</eqn>
-</section>
+</div>
 .
 
 flalign environment:
@@ -154,13 +134,11 @@ flalign environment:
 a = 1
 \end{flalign}
 .
-<section class="amsmath">
-<eqn>
+<div class="math amsmath">
 \begin{flalign}
 a = 1
 \end{flalign}
-</eqn>
-</section>
+</div>
 .
 
 flalign* environment:
@@ -169,13 +147,11 @@ flalign* environment:
 a = 1
 \end{flalign*}
 .
-<section class="amsmath">
-<eqn>
+<div class="math amsmath">
 \begin{flalign*}
 a = 1
 \end{flalign*}
-</eqn>
-</section>
+</div>
 .
 
 equation environment, with before/after paragraphs:
@@ -187,13 +163,11 @@ a = 1
 after
 .
 <p>before</p>
-<section class="amsmath">
-<eqn>
+<div class="math amsmath">
 \begin{equation}
 a = 1
 \end{equation}
-</eqn>
-</section>
+</div>
 <p>after</p>
 .
 
@@ -205,13 +179,11 @@ equation environment, in list:
 .
 <ul>
 <li>
-<section class="amsmath">
-<eqn>
+<div class="math amsmath">
 \begin{equation}
   a = 1
   \end{equation}
-</eqn>
-</section>
+</div>
 </li>
 </ul>
 .

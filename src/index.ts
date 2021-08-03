@@ -11,14 +11,14 @@ export interface IOptions {
 
 /**
  * An markdown-it plugin that parses bare LaTeX [amsmath](https://ctan.org/pkg/amsmath) environments.
- * 
+ *
  * ```latex
     \begin{gather*}
       a_1=b_1+c_1\\
       a_2=b_2+c_2-d_2+e_2
     \end{gather*}
   ```
- * 
+ *
  */
 export default function amsmathPlugin(md: MarkdownIt, options?: IOptions): void {
   md.block.ruler.before("blockquote", "amsmath", amsmathBlock, {
@@ -42,7 +42,7 @@ export default function amsmathPlugin(md: MarkdownIt, options?: IOptions): void 
     // basic renderer for testing
     md.renderer.rules["amsmath"] = (tokens, idx) => {
       const content = md.utils.escapeHtml(tokens[idx].content)
-      return `<section class="amsmath">\n<eqn>\n${content}\n</eqn>\n</section>\n`
+      return `<div class="math amsmath">\n${content}\n</div>\n`
     }
   }
 }

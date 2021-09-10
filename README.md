@@ -27,10 +27,9 @@ import { renderToString } from "katex"
 import MarkdownIt from "markdown-it"
 import amsmathPlugin from "markdown-it-amsmath"
 
-const mdit = MarkdownIt().use(amsmathPlugin, {
-      renderer: renderToString,
-      options: { throwOnError: false, displayMode: true }
-})
+const katexOptions = { throwOnError: false, displayMode: true }
+const renderer = math => renderToString(math, katexOptions)
+const mdit = MarkdownIt().use(amsmathPlugin, { renderer })
 const text = mdit.render("\\begin{equation}a = 1\\end{equation}")
 ```
 
@@ -39,21 +38,26 @@ In the browser:
 ```html
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Example Page</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/markdown-it@12/dist/markdown-it.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js"></script>
-        <script src="https://unpkg.com/markdown-it-amsmath"></script>
-    </head>
-    <body>
-        <div id="demo"></div>
-        <script>
-            const options = { renderer: katex.renderToString, options: { throwOnError: false, displayMode: true }};
-            const text = window.markdownit().use(window.markdownitAmsmath, options).render("\\begin{equation}a = 1\\end{equation}");
-            document.getElementById("demo").innerHTML = text
-        </script>
-    </body>
+  <head>
+    <title>Example Page</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/markdown-it@12/dist/markdown-it.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js"></script>
+    <script src="https://unpkg.com/markdown-it-amsmath"></script>
+  </head>
+  <body>
+    <div id="demo"></div>
+    <script>
+      const katexOptions = { throwOnError: false, displayMode: true }
+      const renderer = math => katex.renderToString(math, katexOptions)
+      const mdit = window.markdownit().use(window.markdownitAmsmath, { renderer })
+      const text = mdit.render("\\begin{equation}a = 1\\end{equation}")
+      document.getElementById("demo").innerHTML = text
+    </script>
+  </body>
 </html>
 ```
 
@@ -94,17 +98,15 @@ Finally, you can update the version of your package, e.g.: `npm version patch -m
 Finally, you can adapt the HTML document in `docs/`, to load both markdown-it and the plugin (from [unpkg]), then render text from an input area.
 This can be deployed by [GitHub Pages].
 
-
 [ci-badge]: https://github.com/executablebooks/markdown-it-amsmath/workflows/CI/badge.svg
 [ci-link]: https://github.com/executablebooks/markdown-it--plugin-template/actions
 [npm-badge]: https://img.shields.io/npm/v/markdown-it-amsmath.svg
 [npm-link]: https://www.npmjs.com/package/markdown-it-amsmath
-
-[GitHub Actions]: https://docs.github.com/en/actions
-[GitHub Pages]: https://docs.github.com/en/pages
+[github actions]: https://docs.github.com/en/actions
+[github pages]: https://docs.github.com/en/pages
 [prettier]: https://prettier.io/
 [eslint]: https://eslint.org/
-[Jest]: https://facebook.github.io/jest/
-[Rollup]: https://rollupjs.org
+[jest]: https://facebook.github.io/jest/
+[rollup]: https://rollupjs.org
 [npm]: https://www.npmjs.com
 [unpkg]: https://unpkg.com/

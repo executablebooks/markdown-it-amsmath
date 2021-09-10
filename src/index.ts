@@ -40,7 +40,7 @@ export default function amsmathPlugin(md: MarkdownIt, options?: IOptions): void 
     // basic renderer for testing
     md.renderer.rules["amsmath"] = (tokens, idx) => {
       const content = md.utils.escapeHtml(tokens[idx].content)
-      return `<section class="amsmath">\n<eqn>\n${content}\n</eqn>\n</section>\n`
+      return `<div class="math amsmath">\n${content}\n</div>\n`
     }
   }
 }

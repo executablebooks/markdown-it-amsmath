@@ -32,7 +32,7 @@ export default function amsmathPlugin(md: MarkdownIt, options?: IOptions): void 
       try {
         res = renderer(content)
       } catch (err) {
-        res = md.utils.escapeHtml(`${content}:${err.message}`)
+        res = md.utils.escapeHtml(`${content}:${(err as Error).message}`)
       }
       return res
     }

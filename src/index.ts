@@ -18,7 +18,7 @@ export interface IOptions {
   ```
  *
  */
-export default function amsmathPlugin(md: MarkdownIt, options?: IOptions): void {
+export function amsmathPlugin(md: MarkdownIt, options?: IOptions): void {
   md.block.ruler.before("blockquote", "amsmath", amsmathBlock, {
     alt: ["paragraph", "reference", "blockquote", "list", "footnote_def"]
   })
@@ -44,6 +44,9 @@ export default function amsmathPlugin(md: MarkdownIt, options?: IOptions): void 
     }
   }
 }
+
+// Exporting both a default and named export is necessary for Jest in some cases
+export default amsmathPlugin
 
 // Taken from amsmath version 2.1
 // http://anorien.csc.warwick.ac.uk/mirrors/CTAN/macros/latex/required/amsmath/amsldoc.pdf

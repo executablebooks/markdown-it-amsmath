@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type MarkdownIt from "markdown-it/lib"
-import type StateBlock from "markdown-it/lib/rules_block/state_block"
+import type MarkdownIt from "markdown-it/lib/index.js"
+import type StateBlock from "markdown-it/lib/rules_block/state_block.js"
 
 export interface IOptions {
   // the render function to use
@@ -11,11 +11,11 @@ export interface IOptions {
  * An markdown-it plugin that parses bare LaTeX [amsmath](https://ctan.org/pkg/amsmath) environments.
  *
  * ```latex
-    \begin{gather*}
-      a_1=b_1+c_1\\
-      a_2=b_2+c_2-d_2+e_2
-    \end{gather*}
-  ```
+ * \begin{gather*}
+ *   a_1=b_1+c_1\\
+ *   a_2=b_2+c_2-d_2+e_2
+ * \end{gather*}
+ * ```
  *
  */
 export function amsmathPlugin(md: MarkdownIt, options?: IOptions): void {

@@ -1,6 +1,6 @@
-/* eslint-disable jest/valid-title */
-import fs from "fs"
-import { renderToString } from "katex"
+import { describe, expect, it } from "vitest"
+import fs from "node:fs"
+import katex from "katex"
 import MarkdownIt from "markdown-it"
 import amsmathPlugin from "../src"
 
@@ -28,7 +28,8 @@ describe("Parses basic", () => {
 
   readFixtures("katex").forEach(([name, text, expected]) => {
     const mdit = MarkdownIt().use(amsmathPlugin, {
-      renderer: math => renderToString(math, { throwOnError: false, displayMode: true })
+      renderer: math =>
+        katex.renderToString(math, { throwOnError: false, displayMode: true })
     })
     let rendered = mdit.render(text)
     // remove styles
